@@ -31,10 +31,13 @@ public class CardDeck {
 	
 	private void shuffleCards() {
 		Card temp = null;
+		//만들고자 하는 타입 찾기가 중요
+		//항상 타입형을 신경쓰자.
 		
 		for(int i = 0; i < cards.length; i++) {
-			int random = (int)(Math.random() * 52);
-			
+			int random = (int)(Math.random() * cards.length);
+			//랜덤함수 중요
+			//cards.length -> 52 이용
 			temp = cards[i];
 			cards[i] = cards[random];
 			cards[random] = temp;
@@ -46,4 +49,17 @@ public class CardDeck {
 			System.out.println(c);
 		}
 	}
+	
+	//카드 주소값 하나를 외부에 준다.
+	public Card pick() {
+		for (int i = 0; i < cards.length; i++) {
+			if (cards[i] != null) {
+				Card c = cards[i];
+				cards[i] = null;
+				return c;
+			}
+		}
+		return null;
+	}
+
 }
