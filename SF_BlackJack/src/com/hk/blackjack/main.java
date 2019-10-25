@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class main {
 	// github.com/ParkDoheum
+	//'배민 객체지향' 검색
 	public static void main(String[] args) {
 		CardDeck cd = new CardDeck();
 		Gamer gm = new Gamer();
