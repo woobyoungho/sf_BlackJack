@@ -1,18 +1,35 @@
 package com.hk.blackjack;
 
-public class main {
+import java.util.Scanner;
 
+public class main {
+	// github.com/ParkDoheum
 	public static void main(String[] args) {
 		CardDeck cd = new CardDeck();
 		Gamer gm = new Gamer();
-		
-		Card c = cd.pick();
-		gm.addCard(c);
+		Dealer dl = new Dealer();
+
+		dl.addCard(cd.pick());
 		gm.addCard(cd.pick());
-		
-		gm.openCards();	
-		System.out.println("---------");
-		cd.showCards();
+		dl.addCard(cd.pick());
+		gm.addCard(cd.pick());
+		dl.needMoreCard(cd);
+
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			gm.openCards();
+			System.out.print("카드 더 받는다 (y) : ");
+			String answer = sc.next();
+
+			if (answer.equals("y")) {
+				gm.addCard(cd.pick());
+			} else {
+				break;
+			}
+		}
+		sc.close();
+		Rule.getWinner(gm, dl);
 	}
 
 }

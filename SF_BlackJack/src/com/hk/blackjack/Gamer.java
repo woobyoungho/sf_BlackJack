@@ -3,6 +3,12 @@ package com.hk.blackjack;
 public class Gamer {
 	protected Card[] myCards = new Card[10];
 	// 주소값일 때는 null을 준다.
+	protected int sum = 0;
+	//여기에 sum 해줘야 다른 클래스에서 for문에 굳이 안넣어도 된다.
+	
+	public int getSum() {
+		return sum;
+	}
 
 	// 카드 주소값을 외부로부터 받아서
 	// myCards 배열에 저장한다.
@@ -11,19 +17,18 @@ public class Gamer {
 		for (int i = 0; i < myCards.length; i++) {
 			if (myCards[i] == null) {
 				myCards[i] = card;
+				sum += card.value;
+				// card.value 값을 항상 sum에 넣어준다.
 				return;
 			}
 		}
 	}
 	
 	public void openCards() {
-		//내가 작성한 것
-		int sum = 0;
 		for(int i = 0; i < myCards.length; i++) {
 			Card c = myCards[i];
 			if(c != null) {
 				System.out.println(c);
-				sum += myCards[i].value;
 			} else {
 				System.out.println("sum : " + sum);
 				break;
@@ -34,7 +39,6 @@ public class Gamer {
 		for(Card c : myCards) {
 			if(c != null) {
 				System.out.println(c);
-				sum += c.value;
 			}
 		}
 		System.out.println("sum : " + sum);
